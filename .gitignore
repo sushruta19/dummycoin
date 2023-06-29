@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# Transpiled JS files
+dist/
+
+# vscode settings
+.vscode/
