@@ -154,9 +154,27 @@ export class Blockchain {
     }
 
     const walletBalance = this.getBalanceOfAddress(transaction.fromAddress);
+    
     if(transaction.amount > walletBalance) {
       throw new Error("Not Enough Balance!");
     }
+
+    //even if the above is false, still there could be many other transactions
+    //in the pending list in which fromAddress is same and we must take into all the
+    //transaction amount to find whether it exceeds wallet amount or not
+    const pendingTxForWallet = this.pendingTransactions.filter(
+      tx => tx.fromAddress === transaction.fromAddress 
+    );
+    if(pendingTxForWallet.length > 0) {
+      const totalPendingAmount = pendingTxForWallet.map(tx => tx.amount)
+      .reduce((sum, currValue)=>sum+currValue);
+
+      const totalAmount = transaction.amount + totalPendingAmount;
+      if(totalAmount > walletBalance) {
+        throw new Error('Pending transactions for this wallet is higher than its balance.');
+      }
+    }
+
     this.pendingTransactions.push(transaction);
   }
 
