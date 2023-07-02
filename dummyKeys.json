@@ -1,0 +1,26 @@
+[
+ {
+  "name": "friend0",
+  "pvtKey": "3f737fc1c1bd62735e4982ca55e6a2cdb10668970deba7602aebf7d94ebc1f9a",
+  "pubKey": "04e6ee149313dcce6ecd8c2fc392de6b74d0bc599bc00e1d3d6100d2af893d43382b5bc9c675bd07c1581d2c56d95e826a6e6f82d10f5ccbe6406ba35396b5b2f4",
+  "wallet": "mw2JE3zS9dVAuPjHZiXTCjUBbRt9R8jwJg"
+ },
+ {
+  "name": "friend1",
+  "pvtKey": "f8f84d12a4807320646d7669e9ae7a12d7f66ae777aae285d656c9a9fe90c8a4",
+  "pubKey": "04ed22bf576bc210a3801675df2b425e23e8617142da87f0ed61335c43c562d0ca20db57348f758673b500e002323189b754ccbe67da6b268de43c505916f518c5",
+  "wallet": "mvjzqLSqypBFA1MUmiYTMerD9pqd1xdhk5"
+ },
+ {
+  "name": "friend2",
+  "pvtKey": "dec40ca1962558d3f2e18d9e923f38e5589e7b396c760284b6158c3a8ba5fcc3",
+  "pubKey": "047953739999bc5d3158820a7faa0417972ae41129ff7786a21ead434914da52d4396d81158566283f124559883e3880bc10ae18890985d33b99db3293ab5bfcc4",
+  "wallet": "myJkSqvyvjmxRNmj3sFePHJ46u2W4rpHry"
+ },
+ {
+  "name": "friend3",
+  "pvtKey": "efe0b44925853f10e8cc947209cbe5d5576ff8b1972c1a227991a28af1614809",
+  "pubKey": "049fd70e07cd3b00f8c1e1b54057441dd81d8bbd68b4eb647bbaac2fe881bcda66050ca1ac90b1f68fd4ab80c9fe3fc73de118edbb3f2bd053806c05d85a8df683",
+  "wallet": "mi3yuzUG1amtvNqs6W4FC3DQ6Y843FGghc"
+ }
+]

@@ -1,5 +1,7 @@
 const { SHA256 } = require("crypto-js");
+const keyGen = require("../keyGenerator.js");
 const EC = require("elliptic").ec;
+
 const ec = new EC("secp256k1");
 
 export class Transaction {
@@ -7,6 +9,7 @@ export class Transaction {
   toAddress : string;
   amount : number;
   timestamp : number;
+  pubKey : string;
   signature : string;
 
   constructor(fromAddress : string, toAddress : string, amount : number) {
@@ -14,6 +17,7 @@ export class Transaction {
     this.toAddress = toAddress;
     this.amount = amount;
     this.timestamp = Date.now();
+    this.pubKey = '';
     this.signature = '';           
   }
 
@@ -21,26 +25,27 @@ export class Transaction {
     return SHA256(this.fromAddress + this.toAddress + this.amount + this.timestamp).toString();
   }
 
-  signTransaction(signingKey : any) {
-    if(signingKey.getPublic('hex') !== this.fromAddress) {
+  signTransaction(pvtKey : any) {
+    if(keyGen.getWalletFromPvtKey(pvtKey) !== this.fromAddress) {
       throw new Error("You can't sign transactions for other wallets!");
     }
+    this.pubKey = keyGen.getPubKeyFromPvtKey(pvtKey);
 
     const originalHashtx = this.calculateTransactionHash();
-    const sig = signingKey.sign(originalHashtx, 'base64');
+    const sig = ec.sign(originalHashtx, pvtKey, "hex");
     this.signature = sig.toDER('hex');
   }
 
   isValid() : boolean {
     //to handle mining reward transaction
-    if(this.toAddress == "null") return true;
+    if(this.fromAddress == "null") return true;
 
     //if no signature present
     if(!this.signature || this.signature.length === 0) {
       throw new Error("No signature in this transaction!");
     }
     //turning our public key into publicKey object
-    const publicKey = ec.keyFromPublic(this.fromAddress, 'hex');
+    const publicKey = ec.keyFromPublic(this.pubKey, 'hex');
     //recalculating hash of transaction
     const newHashtx = this.calculateTransactionHash();
 
@@ -240,3 +245,4 @@ export class Blockchain {
 // it will still be caught since its correct hash is stored in the successive block
 // the only loophole is that the lastest block can be tampered if the its transaction data
 // and corresponding hash is changed since its correct hash is stored nowhere as there is no successive block
+// the loopshole could be prevented if there are other nodes(other people in blockchain network)
