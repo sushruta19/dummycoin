@@ -1,6 +1,6 @@
-# DummyCoin - A Simplified Blockchain Implementation in TypeScript
+# DummyCoin - A Simplified Blockchain Implementation
 
-DummyCoin is a simple TypeScript implementation of a blockchain, focusing on the creation and management of "dummy coins." This project provides a basic understanding of blockchain concepts such as transactions, mining, and wallet management. The implementation includes key components like transactions, blocks, and a blockchain itself.
+DummyCoin is a TypeScript implementation of a simplified version of bitcoin blockchain from scratch, focusing on the creation and management of "dummy coins". This project provides a basic understanding of blockchain concepts such as transactions, mining, and wallet management. The implementation includes key components like transactions, blocks, and a blockchain itself.
 
 ## Features
 
